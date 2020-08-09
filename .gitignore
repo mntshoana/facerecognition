@@ -1,0 +1,10 @@
+# Ignore these files
+bin/
+bin-obj/
+
+*.o
+*.so
+*.xcworkspace
+*.xcodeproj
+*.dSYM
+*.DS_Store

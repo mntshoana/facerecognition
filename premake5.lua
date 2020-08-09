@@ -3,7 +3,7 @@ workspace "facerecognition"
     startproject "facerecognition"
 	architecture "x86_64"
     language "c++"
-    cppdialect "c++11"
+    cppdialect "c++17"
     configurations {
         "Debug",
         "Release"
@@ -23,8 +23,23 @@ project "facerecognition"
     targetdir "bin"
     location "facerecognition"
     kind "ConsoleApp"
+    sysincludedirs {
+        "/usr/local/include/opencv4"
+    }
     files {
         "%{prj.location}/src/**.h",
         "%{prj.location}/src/**.cpp",
     }
+    libdirs {
+        "/usr/local/lib"
+    }
+    links {
+        "opencv_world.4.4.0"
+    }
+    
+    if os.ishost("macosx") then
+        postbuildcommands {
+            "cp %{prj.location}/data/Info.plist %{wks.location}/bin/Info.plist"
+        }
+    end
     
