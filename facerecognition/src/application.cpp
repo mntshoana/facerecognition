@@ -1,41 +1,45 @@
-#include <iostream>
-#include <opencv2/opencv.hpp>
-
 #include <vector>
 #include <string>
 
-using std::endl;
-
-using cv::imshow, cv::imwrite;
-using cv::Mat;
-using cv::VideoCapture, cv::CascadeClassifier;
-
+#include "camera.hpp"
+#include "frame.hpp"
+#include "detector.hpp"
 //
 // Capture faces from video
 //  - Stores captured faces
 //
 int main(int argc, char* argv[]) {
-    VideoCapture cap(0); // -0- opens webCamera; -videoFileName- opens video
-    if (!cap.isOpened()) {
-        std::cout << "Error: Unable to open web camera or video stream." << endl;
+    try {
+        Camera camera;
+        Frame frame;
+        Detector detector;
+
+        while (true) {
+            camera >> frame; // Capture every frame
+            frame.resizeGray(camera.ScaledSize());
+            detector(frame);
+            
+            for (auto& face : detector.vec){
+                frame.drawRect(face);
+                //ccv::imwrite(std::string("../FacialRecognition/data/User.") + std::to_string(count) + ".jpg", Mat(grayFrame, face)); // Save into  folder
+            }
+            frame.display();
+            char c =  (char) cv::waitKey(20);
+            if (c == 27) // c == ESC
+                break;
+        }
+    }
+    catch (CameraError ex){
+        ex.Print();
         return -1;
     }
-    
-    while (true) {
-        Mat frame, grayFrame;
-        cap >> frame; // Capture each frame
-        if (frame.empty()){
-            std::cout << "Error: Empty frame. Unable to record." << endl;
-            break;
-        }
-        
-        // Convert to gray scale
-        cv::cvtColor(frame, grayFrame, cv::COLOR_BGR2GRAY);
-        //imshow( "Video Feed", frame ); // Display
-        imshow ("Video Feed", grayFrame); // Display
-        char c =  (char) cv::waitKey(20);
-        if (c == 27) // ESC
-            break;
+    catch (FrameError ex){
+        ex.Print();
+        return -1;
+    }
+    catch (DetectorError ex){
+        ex.Print();
+        return -1;
     }
     return 0;
 }
