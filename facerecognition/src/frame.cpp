@@ -30,6 +30,7 @@ Camera& operator >> (Camera& lhs, Frame& rhs) {
     
     // Convert to gray scale
     cv::cvtColor(rhs.frame, rhs.grayFrame, cv::COLOR_BGR2GRAY);
+    cv::equalizeHist(rhs.grayFrame, rhs.grayFrame);
     
     return lhs;
 }
