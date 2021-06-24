@@ -8,13 +8,12 @@ Camera::Camera() {
     
     width  = cap.get(cv::CAP_PROP_FRAME_WIDTH);
     height = cap.get(cv::CAP_PROP_FRAME_HEIGHT);
-    scale  = 0.25;
+    
     std::cout << "Camera recording at " << width << 'X' << height << endl;
-    std::cout << "Scaling images to " << scale << endl;
 }
 
-cv::Size Camera::ScaledSize() {
-    return cv::Size(width*scale, height*scale);
+cv::Size Camera::Size() {
+    return cv::Size(width, height);
 }
 Camera::~Camera() {
     cap.release();

@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
 
         while (true) {
             camera >> frame; // Capture every frame
-            frame.resizeGray(camera.ScaledSize());
+            frame.makeGray();
             detector(frame);
             
             for (auto& face : detector.vec){

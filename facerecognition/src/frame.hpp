@@ -1,20 +1,24 @@
+#ifndef frame_hpp
+#define frame_hpp
+
 #include <iostream>
 #include <opencv2/opencv.hpp>
 #include "camera.hpp"
 
-#ifndef frame_hpp
-#define frame_hpp
-
 class Frame {
     cv::Mat frame, grayFrame;
+    float scalex;
+    float scaley;
     
 public:
     const cv::Mat& gray();
-    void resizeGray(cv::Size scale);
+    void makeGray();
     void drawRect(cv::Rect&);
     void display();
     friend Camera& operator >> (Camera& lhs, Frame& rhs);
     
+    int getWidth();
+    int getHeight();
     ~Frame();
 };
 

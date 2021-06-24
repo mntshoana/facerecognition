@@ -14,11 +14,10 @@ private:
     VideoCapture cap;
     float width;
     float height;
-    float scale;
 public:
     Camera();
     ~Camera();
-    cv::Size ScaledSize();
+    cv::Size Size();
     
     template <class T>
     VideoCapture& operator>> (T& frame) {

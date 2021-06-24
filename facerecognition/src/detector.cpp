@@ -10,5 +10,9 @@ Detector::Detector() {
 
 void Detector::operator()(Frame& frame){
     vec.clear();
-    faceDetector.detectMultiScale(frame.gray(), vec);
+    double scaleFactor = 1.2;
+    int minNeighbors = 5;
+    int flags = 0;
+    cv::Size minSize = cv::Size(frame.getWidth() / 20, frame.getHeight() / 20);
+    faceDetector.detectMultiScale(frame.gray(), vec, scaleFactor, minNeighbors, flags, minSize);
 }
