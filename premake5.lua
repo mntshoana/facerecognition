@@ -27,14 +27,20 @@ project "facerecognition"
         "/usr/local/include/opencv4"
     }
     files {
-        "%{prj.location}/src/**.h",
+        "%{prj.location}/src/**.hpp",
         "%{prj.location}/src/**.cpp",
     }
     libdirs {
         "/usr/local/lib"
     }
     links {
-        "opencv_world.4.4.0"
+        "opencv_core.4.5.2",
+        "opencv_face.4.5.2",
+        "opencv_video.4.5.2",
+        "opencv_videoio.4.5.2",
+        "opencv_imgproc.4.5.2",
+        "opencv_objdetect.4.5.2",
+        "opencv_highgui.4.5.2"
     }
     
     if os.ishost("macosx") then

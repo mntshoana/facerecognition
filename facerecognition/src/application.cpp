@@ -4,6 +4,7 @@
 #include "camera.hpp"
 #include "frame.hpp"
 #include "detector.hpp"
+#include "recognizer.hpp"
 //
 // Capture faces from video
 //  - Stores captured faces
@@ -13,6 +14,7 @@ int main(int argc, char* argv[]) {
         Camera camera;
         Frame frame;
         Detector detector;
+        Recognizer recognizer;
 
         while (true) {
             camera >> frame; // Capture every frame
@@ -27,6 +29,13 @@ int main(int argc, char* argv[]) {
             char c =  (char) cv::waitKey(20);
             if (c == 27) // c == ESC
                 break;
+            else if (c == '\r'){
+                std::cout << "Trainning" << std::endl;
+                recognizer.train(frame.gray());
+            }
+            // -1 == no key pressed
+            else if (c != (char)-1) // print keys
+                std::cout << "Pressed " << c << std::endl;
         }
     }
     catch (CameraError ex){
