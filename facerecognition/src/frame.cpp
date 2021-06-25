@@ -7,7 +7,7 @@ void Frame::makeGray() {
     cv::resize(grayFrame, grayFrame, scale);
 }
 
-const cv::Mat& Frame::gray(){
+const cv::Mat& Frame::graySnap(){
     return grayFrame;
 }
 

@@ -40,7 +40,8 @@ project "facerecognition"
         "opencv_videoio.4.5.2",
         "opencv_imgproc.4.5.2",
         "opencv_objdetect.4.5.2",
-        "opencv_highgui.4.5.2"
+        "opencv_highgui.4.5.2",
+        "opencv_imgcodecs.4.5.2",
     }
     
     if os.ishost("macosx") then

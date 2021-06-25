@@ -4,34 +4,33 @@
 #include "camera.hpp"
 #include "frame.hpp"
 #include "detector.hpp"
-#include "recognizer.hpp"
 //
 // Capture faces from video
 //  - Stores captured faces
 //
+
 int main(int argc, char* argv[]) {
     try {
         Camera camera;
         Frame frame;
         Detector detector;
-        Recognizer recognizer;
 
         while (true) {
             camera >> frame; // Capture every frame
             frame.makeGray();
             detector(frame);
             
-            for (auto& face : detector.vec){
+            for (auto& face : detector.faceVec){
                 frame.drawRect(face);
-                //ccv::imwrite(std::string("../FacialRecognition/data/User.") + std::to_string(count) + ".jpg", Mat(grayFrame, face)); // Save into  folder
             }
             frame.display();
             char c =  (char) cv::waitKey(20);
             if (c == 27) // c == ESC
                 break;
             else if (c == '\r'){
-                std::cout << "Trainning" << std::endl;
-                recognizer.train(frame.gray());
+                // Add a face to the database
+                detector.appendToRecognized(frame.graySnap());
+                
             }
             // -1 == no key pressed
             else if (c != (char)-1) // print keys

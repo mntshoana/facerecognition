@@ -11,7 +11,7 @@ class Frame {
     float scaley;
     
 public:
-    const cv::Mat& gray();
+    const cv::Mat& graySnap();
     void makeGray();
     void drawRect(cv::Rect&);
     void display();
