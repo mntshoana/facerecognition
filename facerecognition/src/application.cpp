@@ -9,6 +9,9 @@
 //  - Stores captured faces
 //
 
+/* Todo
+ font = cv2.FONT_HERSHEY_SIMPLEX
+ */
 int main(int argc, char* argv[]) {
     try {
         Camera camera;

@@ -11,6 +11,17 @@ const cv::Mat& Frame::graySnap(){
     return grayFrame;
 }
 
+const float Frame::getXScaleF(){
+    return scalex;
+}
+const float Frame::getYScaleF(){
+    return scaley;
+}
+
+cv::Mat& Frame::liveImageSnap(){
+    return frame;
+}
+
 void Frame::drawRect(cv::Rect& face) {
     using cv::Scalar, cv::rectangle;
     cv::Point topLeft = face.tl();

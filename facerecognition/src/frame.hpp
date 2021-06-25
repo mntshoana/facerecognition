@@ -12,6 +12,9 @@ class Frame {
     
 public:
     const cv::Mat& graySnap();
+    cv::Mat& liveImageSnap();
+    const float getXScaleF();
+    const float getYScaleF();
     void makeGray();
     void drawRect(cv::Rect&);
     void display();

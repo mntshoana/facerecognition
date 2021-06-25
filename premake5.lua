@@ -48,5 +48,7 @@ project "facerecognition"
         postbuildcommands {
             "cp %{prj.location}/data/Info.plist %{wks.location}/bin/Info.plist"
         }
+      links {'Cocoa.framework'}
+      files "%{prj.location}/src/osx/**"
     end
     

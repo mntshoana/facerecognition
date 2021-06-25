@@ -5,6 +5,7 @@
 #include <opencv2/opencv.hpp>
 #include "frame.hpp"
 #include "recognizer.hpp"
+#include "dialogue.hpp"
 
 using cv::CascadeClassifier;
 
@@ -14,7 +15,7 @@ class Detector {
 public:
     Detector();
     void operator()(Frame& frame);
-    std::vector<cv::Rect> faceVec;
+    std::vector<cv::Rect> faceVec; // for grayscale images, not live feed
     std::vector<cv::Rect> lableVec;
     void appendToRecognized(cv::Mat face);
 };

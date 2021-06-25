@@ -16,13 +16,8 @@ void Detector::operator()(Frame& frame){
     cv::Size minSize = cv::Size(frame.getWidth() / 20, frame.getHeight() / 20);
     faceDetector.detectMultiScale(frame.graySnap(), faceVec, scaleFactor, minNeighbors, flags, minSize);
     if (recognizer.isReady())
-        recognizer.lookup(frame.graySnap(), faceVec);
-    /*
-     
-     
-     cv2.putText(img, str(id), (x+5,y-5), font, 1, (255,255,255), 2)
-     cv2.putText(img, str(confidence), (x+5,y+h-5), font, 1, (255,255,0), 1)
-     */
+        recognizer.lookup(frame, faceVec);
+    
 }
 
 void Detector::appendToRecognized(cv::Mat face){
@@ -41,6 +36,7 @@ void Detector::appendToRecognized(cv::Mat face){
         }
         
         cv::Mat singleFace = cv::Mat(face, faceVec[largestIndex]);
-        recognizer.appendToImages(singleFace);
+        std::string name = dialogueInput("Please enter a name for this person", "name");
+        recognizer.appendToImages(singleFace, name);
     }
 }
