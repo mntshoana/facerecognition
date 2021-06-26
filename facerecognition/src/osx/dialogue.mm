@@ -1,13 +1,17 @@
+/* Author Motsoaledi Neo Tshoana
+ */
 #include "dialogue.hpp"
+
 
 #if __APPLE__
 #import <Cocoa/Cocoa.h>
 #import <Foundation/Foundation.h>
 #endif
 
+
 std::string dialogueInput(const char* prompt, const char* defaultText){
 #if __APPLE__
-    // Convert type
+    // Convert types
     NSString *nsPrompt = [NSString stringWithCString:prompt
                                        encoding:[NSString defaultCStringEncoding]];
     NSString *nsDefaultText = [NSString stringWithCString:defaultText

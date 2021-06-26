@@ -1,11 +1,17 @@
+/* Author Motsoaledi Neo Tshoana
+ */
 #include "camera.hpp"
 
+// Hndles camera (or other forms of input too)
+// to allow capturing of live video feed
 Camera::Camera() {
     cap.open(0); // -0- opens webCamera; -videoFileName- opens video
-    if (!cap.isOpened()) {
-        throw CameraError("Error: Unable to open web camera or video stream.");
-    }
     
+    if (!cap.isOpened())
+        throw CameraError("Error: Unable to open web camera or video stream.");
+    
+    // Camera ready!!!
+    // video properties
     width  = cap.get(cv::CAP_PROP_FRAME_WIDTH);
     height = cap.get(cv::CAP_PROP_FRAME_HEIGHT);
     

@@ -1,3 +1,5 @@
+/* Author Motsoaledi Neo Tshoana
+ */
 #ifndef recognizer_hpp
 #define recognizer_hpp
 
@@ -12,6 +14,11 @@
 #include <opencv2/face.hpp> // make sure to also install open_contrib extension
 
 #include "frame.hpp"
+
+// Handles detected faces and recognizez who these faces are
+// and also trains a model to recognize new faces
+// Note: model uses ids to identify subject
+//
 class Recognizer {
     cv::Ptr<cv::face::FaceRecognizer> model;
     std::vector<cv::Mat> images;

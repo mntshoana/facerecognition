@@ -1,5 +1,10 @@
+/* Author Motsoaledi Neo Tshoana
+ */
 #include "detector.hpp"
 
+// Detects faces in a frame
+// and deals with this detected face appropriately
+//
 Detector::Detector() {
     char haarPath[] = "../facerecognition/data/haarcascade_frontalface_default.xml";
     faceDetector.load(haarPath);

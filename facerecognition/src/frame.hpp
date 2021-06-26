@@ -1,3 +1,5 @@
+/* Author Motsoaledi Neo Tshoana
+ */
 #ifndef frame_hpp
 #define frame_hpp
 
@@ -5,6 +7,10 @@
 #include <opencv2/opencv.hpp>
 #include "camera.hpp"
 
+// Handles images that have been captured
+// converts and scales down as required
+// and also display to screen as required
+//
 class Frame {
     cv::Mat frame, grayFrame;
     float scalex;
@@ -25,6 +31,8 @@ public:
     ~Frame();
 };
 
+// Errors related to the image frame class
+//
 class FrameError {
     const char* message;
 public:

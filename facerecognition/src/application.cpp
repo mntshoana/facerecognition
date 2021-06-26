@@ -1,3 +1,5 @@
+/* Author Motsoaledi Neo Tshoana
+ */
 #include <vector>
 #include <string>
 
@@ -6,12 +8,9 @@
 #include "detector.hpp"
 //
 // Capture faces from video
+//  - Detects faces
 //  - Stores captured faces
-//
-
-/* Todo
- font = cv2.FONT_HERSHEY_SIMPLEX
- */
+//  - And uses these to recognize faces
 int main(int argc, char* argv[]) {
     try {
         Camera camera;
@@ -20,13 +19,14 @@ int main(int argc, char* argv[]) {
 
         while (true) {
             camera >> frame; // Capture every frame
-            frame.makeGray();
             detector(frame);
             
             for (auto& face : detector.faceVec){
                 frame.drawRect(face);
             }
             frame.display();
+            
+            // user keyboard input
             char c =  (char) cv::waitKey(20);
             if (c == 27) // c == ESC
                 break;
