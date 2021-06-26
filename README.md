@@ -1,9 +1,11 @@
 # Facerecognition
-Simple application designed to immplement face detection as well as face recognitiion. using open cv and c++. Detection happens using the computer's camera and so any face detected can be stored in the database along with the user's to be later used when the in recognition.
+Simple application designed to immplement face detection as well recognitiion using open cv and c++. 
 
-Important keys to note:
-    - ESC - exits app
-    - ENTER - attempts to identify a new face  and add it to the databasee
+Detection happens using the camera. Faces detected can then be stored and later used to recognize the same user.
+
+Important note about keys and what they do:
+    * ESC:  This exits recognizer
+    * ENTER:     This attempts to identify a new face  and add it to the databasee
     
 
 ##  Usage
